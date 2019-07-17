@@ -29,5 +29,47 @@
     <Setting Name="access_token_secret" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="viewer_default_backcolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">46, 46, 46</Value>
+    </Setting>
+    <Setting Name="viewer_default_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="viewer_BraceLight_backcolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Blue</Value>
+    </Setting>
+    <Setting Name="viewer_BraceLight_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="viewer_Cursor_Color" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="viewer_Selection_backcolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">170, 170, 170</Value>
+    </Setting>
+    <Setting Name="viewer_linenumber_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">183, 183, 183</Value>
+    </Setting>
+    <Setting Name="viewer_Json_PropertyName_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Lime</Value>
+    </Setting>
+    <Setting Name="viewer_Json_String_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
+    <Setting Name="viewer_Json_Number_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="viewer_Json_Operator_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="viewer_Json_Comment_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">64, 191, 87</Value>
+    </Setting>
+    <Setting Name="viewer_Json_Uri_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
+    <Setting Name="viewer_Json_Boolean_forecolor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkOrange</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

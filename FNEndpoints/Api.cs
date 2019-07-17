@@ -26,7 +26,6 @@ namespace FNEndpoints
             EndpointRequest.AddHeader("Accept-Language", Properties.Settings.Default.Language);
             EndpointRequest.AddHeader("X-EpicGames-Language", Properties.Settings.Default.Language);
 
-
             var response = EndpointClient.Execute(EndpointRequest);
             string content = response.Content;
 

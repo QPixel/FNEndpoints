@@ -36,11 +36,20 @@ namespace FNEndpoints.Scintilla
             scintilla1.ReadOnly = true;
         }
 
+        public void updateSettings()
+        {
+            if(scintilla1 != null)
+            {
+
+                InitSyntaxColoring();
+                InitColors();
+            }
+        }
+
         private void MyScintilla_Load(object sender, EventArgs e)
         {
             scintilla1 = new ScintillaNET.Scintilla();
             
-            scintilla1.ReadOnly = true;
             TextPanel.Controls.Add(scintilla1);
 
             scintilla1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -71,7 +80,7 @@ namespace FNEndpoints.Scintilla
 
         private void InitColors()
         {
-            scintilla1.SetSelectionBackColor(true, IntToColor(0xaaaaaa));
+            scintilla1.SetSelectionBackColor(true, Properties.Settings.Default.viewer_Selection_backcolor);  //IntToColor(0xaaaaaa)
         }
 
         private void InitHotkeys()
@@ -91,6 +100,7 @@ namespace FNEndpoints.Scintilla
             scintilla1.DwellStart += DwellStart;
             scintilla1.MouseClick += MouseClick;
             scintilla1.MouseMove += MouseMove;
+            scintilla1.UpdateUI += scintilla_UpdateUI;
 
 
         }
@@ -129,29 +139,88 @@ namespace FNEndpoints.Scintilla
 
             // Configure the default style
             scintilla1.StyleResetDefault();
+
+            scintilla1.IndentationGuides = IndentView.LookBoth;
+
             scintilla1.Styles[Style.Default].Font = "Consolas";
             scintilla1.Styles[Style.Default].Size = 10;
-            scintilla1.Styles[Style.Default].BackColor = IntToColor(0x212121);
-            scintilla1.Styles[Style.Default].ForeColor = IntToColor(0xFFFFFF);
+            scintilla1.Styles[Style.Default].BackColor = Properties.Settings.Default.viewer_default_backcolor;  //IntToColor(0x212121);
+            scintilla1.Styles[Style.Default].ForeColor = Properties.Settings.Default.viewer_default_forecolor;  //IntToColor(0xFFFFFF);
 
             scintilla1.StyleClearAll();
 
-            scintilla1.Styles[Style.Json.PropertyName].ForeColor = IntToColor(0x00ff00);
-            scintilla1.Styles[Style.Json.String].ForeColor = IntToColor(0x008000);
-            scintilla1.Styles[Style.Json.StringEol].ForeColor = IntToColor(0x008000);
-            scintilla1.Styles[Style.Json.Number].ForeColor = IntToColor(0xff0000);
-            scintilla1.Styles[Style.Json.Operator].ForeColor = IntToColor(0x808080);
-            scintilla1.Styles[Style.Json.BlockComment].ForeColor = IntToColor(0x40BF57);
-            scintilla1.Styles[Style.Json.LineComment].ForeColor = IntToColor(0x40BF57);
-            scintilla1.Styles[Style.Json.Uri].ForeColor = IntToColor(0x008000);
-            scintilla1.Styles[Style.FoldDisplayText].Underline = true;
+            scintilla1.Styles[Style.BraceLight].BackColor = Properties.Settings.Default.viewer_BraceLight_backcolor;  //Color.Blue;
+            scintilla1.Styles[Style.BraceLight].ForeColor = Properties.Settings.Default.viewer_BraceLight_forecolor;  //Color.White;
 
-            scintilla1.CaretForeColor = IntToColor(0xffffff);
+            scintilla1.Styles[Style.Json.PropertyName].ForeColor = Properties.Settings.Default.viewer_Json_PropertyName_forecolor;  //IntToColor(0x00ff00);
+            scintilla1.Styles[Style.Json.String].ForeColor = Properties.Settings.Default.viewer_Json_String_forecolor;  //IntToColor(0x008000);
+            scintilla1.Styles[Style.Json.StringEol].ForeColor = Properties.Settings.Default.viewer_Json_String_forecolor;  //IntToColor(0x008000);
+            scintilla1.Styles[Style.Json.Number].ForeColor = Properties.Settings.Default.viewer_Json_Number_forecolor;  //IntToColor(0xff0000);
+            scintilla1.Styles[Style.Json.Operator].ForeColor = Properties.Settings.Default.viewer_Json_Operator_forecolor;  //IntToColor(0x808080);
+            scintilla1.Styles[Style.Json.BlockComment].ForeColor = Properties.Settings.Default.viewer_Json_Comment_forecolor;  //IntToColor(0x40BF57);
+            scintilla1.Styles[Style.Json.LineComment].ForeColor = Properties.Settings.Default.viewer_Json_Comment_forecolor;  //IntToColor(0x40BF57);
+            scintilla1.Styles[Style.Json.Uri].ForeColor = Properties.Settings.Default.viewer_Json_Uri_forecolor;  //IntToColor(0x008000);
+            scintilla1.Styles[Style.Json.Keyword].ForeColor = Properties.Settings.Default.viewer_Json_Boolean_forecolor;  //IntToColor(0xff8c00);
+            
+            scintilla1.CaretForeColor = Properties.Settings.Default.viewer_Cursor_Color;  //IntToColor(0xffffff);
 
             scintilla1.Lexer = ScintillaNET.Lexer.Json;
 
-            scintilla1.SetKeywords(4, "true false");
+            scintilla1.SetKeywords(0, "true false");
 
+        }
+
+        int lastCaretPos = 0;
+
+        private void scintilla_UpdateUI(object sender, UpdateUIEventArgs e)
+        {
+            // Has the caret changed position?
+            var caretPos = scintilla1.CurrentPosition;
+            if (lastCaretPos != caretPos)
+            {
+                lastCaretPos = caretPos;
+                var bracePos1 = -1;
+                var bracePos2 = -1;
+
+                // Is there a brace to the left or right?
+                if (caretPos > 0 && IsBrace(scintilla1.GetCharAt(caretPos - 1)))
+                    bracePos1 = (caretPos - 1);
+                else if (IsBrace(scintilla1.GetCharAt(caretPos)))
+                    bracePos1 = caretPos;
+
+                if (bracePos1 >= 0)
+                {
+                    // Find the matching brace
+                    bracePos2 = scintilla1.BraceMatch(bracePos1);
+                    if (bracePos2 == ScintillaNET.Scintilla.InvalidPosition)
+                        scintilla1.BraceBadLight(bracePos1);
+                    else
+                        scintilla1.BraceHighlight(bracePos1, bracePos2);
+                }
+                else
+                {
+                    // Turn off brace matching
+                    scintilla1.BraceHighlight(ScintillaNET.Scintilla.InvalidPosition, ScintillaNET.Scintilla.InvalidPosition);
+                }
+            }
+        }
+
+        private static bool IsBrace(int c)
+        {
+            switch (c)
+            {
+                case '(':
+                case ')':
+                case '[':
+                case ']':
+                case '{':
+                case '}':
+                case '<':
+                case '>':
+                    return true;
+            }
+
+            return false;
         }
 
         private void setContextMenu()
@@ -163,22 +232,36 @@ namespace FNEndpoints.Scintilla
         }
         private void ContextMenu_Popup(System.Object sender, System.EventArgs e)
         {
-            scintilla1.ContextMenu.MenuItems.Clear();
-
-            scintilla1.ContextMenu.MenuItems.Add(new MenuItem("Copy", (s, ea) => scintilla1.Copy()));
-            scintilla1.ContextMenu.MenuItems.Add(new MenuItem("Select All", (s, ea) => scintilla1.SelectAll()));
-
-
-
-
             System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
             var cor = scintilla1.PointToClient(point);
             var pos = scintilla1.CharPositionFromPoint(cor.X, cor.Y);
 
+            Console.WriteLine("start");
             int startPos = ValueStartPosition(pos);
+            Console.WriteLine("start2");
+            Console.WriteLine("end");
             int endPos = ValueEndPosition(pos);
+            Console.WriteLine("end3");
 
             string text = scintilla1.GetTextRange(startPos, endPos - startPos);
+
+
+
+            scintilla1.ContextMenu.MenuItems.Clear();
+
+            scintilla1.ContextMenu.MenuItems.Add(new MenuItem("Copy", (s, ea) =>
+            {
+                if(scintilla1.SelectedText != "")
+                {
+                    scintilla1.Copy();
+                } else
+                {
+                    scintilla1.CopyRange(startPos, endPos);
+                }
+            }));
+            scintilla1.ContextMenu.MenuItems.Add(new MenuItem("Select All", (s, ea) => scintilla1.SelectAll()));
+
+            
 
             if ((text.StartsWith("http://") || text.StartsWith("https://")))
             {
@@ -333,12 +416,12 @@ namespace FNEndpoints.Scintilla
         /// <summary>
         /// the background color of the text area
         /// </summary>
-        private const int BACK_COLOR = 0x272727;
+        private Color BACK_COLOR = Properties.Settings.Default.viewer_default_backcolor;
 
         /// <summary>
         /// default text color of the text area
         /// </summary>
-        private const int FORE_COLOR = 0xB7B7B7;
+        private Color FORE_COLOR = Properties.Settings.Default.viewer_linenumber_forecolor;
 
         /// <summary>
         /// change this to whatever margin you want the line numbers to show in
@@ -363,11 +446,10 @@ namespace FNEndpoints.Scintilla
 
         private void InitNumberMargin()
         {
-
-            scintilla1.Styles[ScintillaNET.Style.LineNumber].BackColor = IntToColor(BACK_COLOR);
-            scintilla1.Styles[ScintillaNET.Style.LineNumber].ForeColor = IntToColor(FORE_COLOR);
-            scintilla1.Styles[ScintillaNET.Style.IndentGuide].ForeColor = IntToColor(FORE_COLOR);
-            scintilla1.Styles[ScintillaNET.Style.IndentGuide].BackColor = IntToColor(BACK_COLOR);
+            scintilla1.Styles[ScintillaNET.Style.LineNumber].BackColor = BACK_COLOR;
+            scintilla1.Styles[ScintillaNET.Style.LineNumber].ForeColor = FORE_COLOR;
+            scintilla1.Styles[ScintillaNET.Style.IndentGuide].ForeColor = FORE_COLOR;
+            scintilla1.Styles[ScintillaNET.Style.IndentGuide].BackColor = BACK_COLOR;
 
             var nums = scintilla1.Margins[NUMBER_MARGIN];
             nums.Width = 30;
@@ -401,8 +483,8 @@ namespace FNEndpoints.Scintilla
         private void InitCodeFolding()
         {
 
-            scintilla1.SetFoldMarginColor(true, IntToColor(BACK_COLOR));
-            scintilla1.SetFoldMarginHighlightColor(true, IntToColor(BACK_COLOR));
+            scintilla1.SetFoldMarginColor(true, BACK_COLOR);
+            scintilla1.SetFoldMarginHighlightColor(true, BACK_COLOR);
 
             // Enable code folding
             scintilla1.SetProperty("fold", "1");
@@ -417,8 +499,8 @@ namespace FNEndpoints.Scintilla
             // Set colors for all folding markers
             for (int i = 25; i <= 31; i++)
             {
-                scintilla1.Markers[i].SetForeColor(IntToColor(BACK_COLOR)); // styles for [+] and [-]
-                scintilla1.Markers[i].SetBackColor(IntToColor(FORE_COLOR)); // styles for [+] and [-]
+                scintilla1.Markers[i].SetForeColor(BACK_COLOR); // styles for [+] and [-]
+                scintilla1.Markers[i].SetBackColor(FORE_COLOR); // styles for [+] and [-]
             }
 
             // Configure folding markers with respective symbols

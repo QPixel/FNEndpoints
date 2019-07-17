@@ -130,5 +130,173 @@ namespace FNEndpoints.Properties {
                 this["access_token_secret"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("46, 46, 46")]
+        public global::System.Drawing.Color viewer_default_backcolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_default_backcolor"]));
+            }
+            set {
+                this["viewer_default_backcolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color viewer_default_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_default_forecolor"]));
+            }
+            set {
+                this["viewer_default_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
+        public global::System.Drawing.Color viewer_BraceLight_backcolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_BraceLight_backcolor"]));
+            }
+            set {
+                this["viewer_BraceLight_backcolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color viewer_BraceLight_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_BraceLight_forecolor"]));
+            }
+            set {
+                this["viewer_BraceLight_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color viewer_Cursor_Color {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Cursor_Color"]));
+            }
+            set {
+                this["viewer_Cursor_Color"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("170, 170, 170")]
+        public global::System.Drawing.Color viewer_Selection_backcolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Selection_backcolor"]));
+            }
+            set {
+                this["viewer_Selection_backcolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("183, 183, 183")]
+        public global::System.Drawing.Color viewer_linenumber_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_linenumber_forecolor"]));
+            }
+            set {
+                this["viewer_linenumber_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Lime")]
+        public global::System.Drawing.Color viewer_Json_PropertyName_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Json_PropertyName_forecolor"]));
+            }
+            set {
+                this["viewer_Json_PropertyName_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Green")]
+        public global::System.Drawing.Color viewer_Json_String_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Json_String_forecolor"]));
+            }
+            set {
+                this["viewer_Json_String_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color viewer_Json_Number_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Json_Number_forecolor"]));
+            }
+            set {
+                this["viewer_Json_Number_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Gray")]
+        public global::System.Drawing.Color viewer_Json_Operator_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Json_Operator_forecolor"]));
+            }
+            set {
+                this["viewer_Json_Operator_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("64, 191, 87")]
+        public global::System.Drawing.Color viewer_Json_Comment_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Json_Comment_forecolor"]));
+            }
+            set {
+                this["viewer_Json_Comment_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Green")]
+        public global::System.Drawing.Color viewer_Json_Uri_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Json_Uri_forecolor"]));
+            }
+            set {
+                this["viewer_Json_Uri_forecolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DarkOrange")]
+        public global::System.Drawing.Color viewer_Json_Boolean_forecolor {
+            get {
+                return ((global::System.Drawing.Color)(this["viewer_Json_Boolean_forecolor"]));
+            }
+            set {
+                this["viewer_Json_Boolean_forecolor"] = value;
+            }
+        }
     }
 }

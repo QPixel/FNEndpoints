@@ -53,6 +53,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.open1 = new System.Windows.Forms.Button();
+            this.open2 = new System.Windows.Forms.Button();
+            this.open3 = new System.Windows.Forms.Button();
+            this.open4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.settingsPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -206,6 +210,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Send";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // status_textbox
             // 
@@ -230,6 +235,10 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.open4);
+            this.groupBox1.Controls.Add(this.open3);
+            this.groupBox1.Controls.Add(this.open2);
+            this.groupBox1.Controls.Add(this.open1);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBox3);
@@ -251,7 +260,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox4.Location = new System.Drawing.Point(188, 91);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(586, 20);
+            this.textBox4.Size = new System.Drawing.Size(536, 20);
             this.textBox4.TabIndex = 7;
             // 
             // label5
@@ -269,7 +278,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Location = new System.Drawing.Point(188, 65);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(586, 20);
+            this.textBox3.Size = new System.Drawing.Size(536, 20);
             this.textBox3.TabIndex = 5;
             // 
             // label4
@@ -287,7 +296,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Location = new System.Drawing.Point(188, 39);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(586, 20);
+            this.textBox2.Size = new System.Drawing.Size(536, 20);
             this.textBox2.TabIndex = 3;
             // 
             // label3
@@ -305,7 +314,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(188, 13);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(586, 20);
+            this.textBox1.Size = new System.Drawing.Size(536, 20);
             this.textBox1.TabIndex = 1;
             // 
             // label2
@@ -316,6 +325,46 @@
             this.label2.Size = new System.Drawing.Size(176, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Image 1 (leave blank for no image): ";
+            // 
+            // open1
+            // 
+            this.open1.Location = new System.Drawing.Point(730, 11);
+            this.open1.Name = "open1";
+            this.open1.Size = new System.Drawing.Size(44, 23);
+            this.open1.TabIndex = 8;
+            this.open1.Text = ">>";
+            this.open1.UseVisualStyleBackColor = true;
+            this.open1.Click += new System.EventHandler(this.open1_Click);
+            // 
+            // open2
+            // 
+            this.open2.Location = new System.Drawing.Point(730, 37);
+            this.open2.Name = "open2";
+            this.open2.Size = new System.Drawing.Size(44, 23);
+            this.open2.TabIndex = 9;
+            this.open2.Text = ">>";
+            this.open2.UseVisualStyleBackColor = true;
+            this.open2.Click += new System.EventHandler(this.open2_Click);
+            // 
+            // open3
+            // 
+            this.open3.Location = new System.Drawing.Point(730, 63);
+            this.open3.Name = "open3";
+            this.open3.Size = new System.Drawing.Size(44, 23);
+            this.open3.TabIndex = 10;
+            this.open3.Text = ">>";
+            this.open3.UseVisualStyleBackColor = true;
+            this.open3.Click += new System.EventHandler(this.open3_Click);
+            // 
+            // open4
+            // 
+            this.open4.Location = new System.Drawing.Point(730, 89);
+            this.open4.Name = "open4";
+            this.open4.Size = new System.Drawing.Size(44, 23);
+            this.open4.TabIndex = 11;
+            this.open4.Text = ">>";
+            this.open4.UseVisualStyleBackColor = true;
+            this.open4.Click += new System.EventHandler(this.open4_Click);
             // 
             // AdminTab
             // 
@@ -365,5 +414,9 @@
         private System.Windows.Forms.TextBox consumer_key;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button_ok;
+        private System.Windows.Forms.Button open4;
+        private System.Windows.Forms.Button open3;
+        private System.Windows.Forms.Button open2;
+        private System.Windows.Forms.Button open1;
     }
 }
