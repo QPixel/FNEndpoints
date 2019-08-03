@@ -61,7 +61,7 @@ namespace FNEndpoints.Updater
             {
                 HttpClient httpClient = new HttpClient();
                 httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("C# App");
-                return await httpClient.GetStringAsync("https://api.github.com/repos/fnbrDailyy/FNEndpoints/releases/latest");
+                return await httpClient.GetStringAsync("https://api.github.com/repos/RythenGlyth/FNEndpoints/releases/latest");
             }
             catch (HttpRequestException)
             {
