@@ -8,18 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using FNEndpoints.Properties;
-using FNEndpoints.Scintilla;
 
 namespace FNEndpoints.Pages
 {
-    public partial class Timeline : UserControl
+    public partial class BlogPosts : UserControl
     {
-        public Timeline()
+        public BlogPosts()
         {
             InitializeComponent();
-
-            updateSettings();
         }
 
         public void updateSettings()
@@ -29,11 +25,7 @@ namespace FNEndpoints.Pages
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string response = Api.GetEndpoint("https://fortnite-public-service-prod11.ol.epicgames.com/fortnite/api/calendar/v1/timeline", true, RestSharp.Method.GET);
-            var json = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(response), Formatting.Indented);
-            
-            myScintilla1.setText(json);
-
+            myScintilla1.setText(JsonConvert.SerializeObject(JsonConvert.DeserializeObject(Api.GetEndpoint("https://www.epicgames.com/fortnite/api/blog/getPosts?postsPerPage=0&offset=0&locale=" + Properties.Settings.Default.Language, false, RestSharp.Method.GET)), Formatting.Indented));
         }
     }
 }

@@ -25,8 +25,6 @@ namespace FNEndpoints.Pages
 
         public void updateSettings()
         {
-            this.button1.Image = (Properties.Settings.Default.Images) ? (Resources.load) : null;
-            this.button1.Text = (Properties.Settings.Default.Images) ? "" : "Load";
             this.myScintilla1.updateSettings();
         }
 
@@ -38,6 +36,26 @@ namespace FNEndpoints.Pages
         private void label1_Click(object sender, EventArgs e)
         {
             Process.Start("http://benbotfn.tk:8080/api/aes");
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void myScintilla1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

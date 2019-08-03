@@ -166,7 +166,7 @@ namespace FNEndpoints.Scintilla
 
             scintilla1.Lexer = ScintillaNET.Lexer.Json;
 
-            scintilla1.SetKeywords(0, "true false");
+            scintilla1.SetKeywords(0, "true false null");
 
         }
 
@@ -426,13 +426,13 @@ namespace FNEndpoints.Scintilla
         /// <summary>
         /// change this to whatever margin you want the line numbers to show in
         /// </summary>
-        private const int NUMBER_MARGIN = 1;
+        private const int NUMBER_MARGIN = 2;
 
         /// <summary>
         /// change this to whatever margin you want the bookmarks/breakpoints to show in
         /// </summary>
-        private const int BOOKMARK_MARGIN = 2;
-        private const int BOOKMARK_MARKER = 2;
+        private const int BOOKMARK_MARGIN = 1;
+        private const int BOOKMARK_MARKER = 1;
 
         /// <summary>
         /// change this to whatever margin you want the code folding tree (+/-) to show in
@@ -511,6 +511,8 @@ namespace FNEndpoints.Scintilla
             scintilla1.Markers[Marker.FolderOpenMid].Symbol = CODEFOLDING_CIRCULAR ? MarkerSymbol.CircleMinusConnected : MarkerSymbol.BoxMinusConnected;
             scintilla1.Markers[Marker.FolderSub].Symbol = MarkerSymbol.VLine;
             scintilla1.Markers[Marker.FolderTail].Symbol = MarkerSymbol.LCorner;
+
+            scintilla1.SetFoldFlags(FoldFlags.LineAfterContracted);
 
             // Enable automatic folding
             scintilla1.AutomaticFold = (AutomaticFold.Show | AutomaticFold.Click | AutomaticFold.Change);

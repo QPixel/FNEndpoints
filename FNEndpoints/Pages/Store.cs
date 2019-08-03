@@ -22,8 +22,6 @@ namespace FNEndpoints.Pages
 
         public void updateSettings()
         {
-            this.button1.Image = (Properties.Settings.Default.Images) ? (Resources.load) : null;
-            this.button1.Text = (Properties.Settings.Default.Images) ? "" : "Load";
             this.myScintilla1.updateSettings();
         }
 

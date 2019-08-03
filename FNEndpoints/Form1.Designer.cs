@@ -33,8 +33,8 @@ namespace FNEndpoints
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.status_button = new System.Windows.Forms.Button();
             this.store_button = new System.Windows.Forms.Button();
             this.aesKey_button = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@ namespace FNEndpoints
             this.aesKeys1 = new FNEndpoints.Pages.AesKeys();
             this.store1 = new FNEndpoints.Pages.Store();
             this.status1 = new FNEndpoints.Pages.Status();
-            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blogPosts1 = new FNEndpoints.Pages.BlogPosts();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -56,9 +56,7 @@ namespace FNEndpoints
             // 
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem,
-            this.aboutToolStripMenuItem,
-            this.adminToolStripMenuItem});
+            this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1191, 24);
@@ -72,16 +70,10 @@ namespace FNEndpoints
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.status_button);
             this.panel1.Controls.Add(this.store_button);
             this.panel1.Controls.Add(this.aesKey_button);
@@ -93,6 +85,19 @@ namespace FNEndpoints
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 681);
             this.panel1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Gainsboro;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 537);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 91);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "BlogPosts";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // status_button
             // 
@@ -220,12 +225,13 @@ namespace FNEndpoints
             this.status1.Size = new System.Drawing.Size(991, 681);
             this.status1.TabIndex = 6;
             // 
-            // adminToolStripMenuItem
+            // blogPosts1
             // 
-            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.adminToolStripMenuItem.Text = "Admin";
-            this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
+            this.blogPosts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.blogPosts1.Location = new System.Drawing.Point(200, 24);
+            this.blogPosts1.Name = "blogPosts1";
+            this.blogPosts1.Size = new System.Drawing.Size(991, 681);
+            this.blogPosts1.TabIndex = 7;
             // 
             // Form1
             // 
@@ -233,6 +239,7 @@ namespace FNEndpoints
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1191, 705);
+            this.Controls.Add(this.blogPosts1);
             this.Controls.Add(this.status1);
             this.Controls.Add(this.store1);
             this.Controls.Add(this.aesKeys1);
@@ -256,7 +263,6 @@ namespace FNEndpoints
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button timeline_button;
         private Pages.Timeline timeline1;
@@ -270,7 +276,8 @@ namespace FNEndpoints
         private Store store1;
         private System.Windows.Forms.Button status_button;
         private Status status1;
-        private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private BlogPosts blogPosts1;
     }
 }
 

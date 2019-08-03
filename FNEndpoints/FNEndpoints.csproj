@@ -143,25 +143,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="About.Designer.cs">
-      <DependentUpon>About.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminTab\AdminInputPassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminTab\AdminInputPassword.Designer.cs">
-      <DependentUpon>AdminInputPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminTab\AdminTab.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminTab\AdminTab.Designer.cs">
-      <DependentUpon>AdminTab.cs</DependentUpon>
-    </Compile>
     <Compile Include="Api.cs" />
+    <Compile Include="Pages\BlogPosts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\BlogPosts.Designer.cs">
+      <DependentUpon>BlogPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Updater\DownloadUpdateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,14 +229,8 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\TwitterApi.cs" />
-    <EmbeddedResource Include="About.resx">
-      <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminTab\AdminInputPassword.resx">
-      <DependentUpon>AdminInputPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminTab\AdminTab.resx">
-      <DependentUpon>AdminTab.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\BlogPosts.resx">
+      <DependentUpon>BlogPosts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Updater\DownloadUpdateDialog.resx">
       <DependentUpon>DownloadUpdateDialog.cs</DependentUpon>

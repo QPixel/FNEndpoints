@@ -14,9 +14,6 @@
     <Setting Name="pakPath" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Images" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="consumer_key" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

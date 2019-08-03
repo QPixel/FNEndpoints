@@ -1,5 +1,4 @@
-﻿using FNEndpoints.AdminTab;
-using FNEndpoints.Properties;
+﻿using FNEndpoints.Properties;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -34,23 +33,6 @@ namespace FNEndpoints
 
         public void updateSettings()
         {
-            this.timeline_button.Image = (Properties.Settings.Default.Images) ? (Resources.timeline) : null;
-            this.timeline_button.Text = (Properties.Settings.Default.Images) ? "" : "Timeline";
-
-            this.news_button.Image = (Properties.Settings.Default.Images) ? (Resources.news) : null;
-            this.news_button.Text = (Properties.Settings.Default.Images) ? "" : "News";
-
-            this.aesKey_button.Image = (Properties.Settings.Default.Images) ? (Resources.aesKeys) : null;
-            this.aesKey_button.Text = (Properties.Settings.Default.Images) ? "" : "AesKeys";
-
-            this.ltm_info_button.Image = (Properties.Settings.Default.Images) ? (Resources.ltmInfo) : null;
-            this.ltm_info_button.Text = (Properties.Settings.Default.Images) ? "" : "LTM Info";
-
-            this.store_button.Image = (Properties.Settings.Default.Images) ? (Resources.store) : null;
-            this.store_button.Text = (Properties.Settings.Default.Images) ? "" : "Store";
-
-            this.status_button.Image = (Properties.Settings.Default.Images) ? (Resources.status) : null;
-            this.status_button.Text = (Properties.Settings.Default.Images) ? "" : "Status";
 
             this.timeline1.updateSettings();
             this.news1.updateSettings();
@@ -74,27 +56,15 @@ namespace FNEndpoints
             }
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var aboutForm = new About();
-            if (Application.OpenForms[aboutForm.Name] == null)
-            {
-                aboutForm.Show();
-            }
-            else
-            {
-                Application.OpenForms[aboutForm.Name].Focus();
-            }
-        }
-
         private void openPage(UserControl form)
         {
-            timeline1.Visible = form == timeline1 ? true : false;
-            ltm_info1.Visible = form == ltm_info1 ? true : false;
-            news1.Visible = form == news1 ? true : false;
-            aesKeys1.Visible = form == aesKeys1 ? true : false; 
-            store1.Visible = form == store1 ? true : false;
-            status1.Visible = form == status1 ? true : false;
+            timeline1.Visible = form == timeline1;
+            ltm_info1.Visible = form == ltm_info1;
+            news1.Visible = form == news1;
+            aesKeys1.Visible = form == aesKeys1; 
+            store1.Visible = form == store1;
+            status1.Visible = form == status1;
+            blogPosts1.Visible = form == blogPosts1;
         }
 
         private void timeline_button_Click(object sender, EventArgs e)
@@ -127,9 +97,9 @@ namespace FNEndpoints
             openPage(status1);
         }
 
-        private void adminToolStripMenuItem_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            var result = new AdminInputPassword().ShowDialog();
+            openPage(blogPosts1);
         }
     }
 }

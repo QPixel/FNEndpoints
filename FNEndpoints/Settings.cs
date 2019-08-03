@@ -23,7 +23,6 @@ namespace FNEndpoints
             textBox2.Text = Properties.Settings.Default.EpicPassword;
             LanguageComboBox.Text = Properties.Settings.Default.Language;
             textBox3.Text = Properties.Settings.Default.pakPath;
-            imagesCheckBox.Checked = Properties.Settings.Default.Images;
 
 
             color_background_panel.BackColor = Properties.Settings.Default.viewer_default_backcolor;
@@ -66,7 +65,6 @@ namespace FNEndpoints
             Properties.Settings.Default.EpicPassword = textBox2.Text;
             Properties.Settings.Default.Language = LanguageComboBox.Text;
             Properties.Settings.Default.pakPath = textBox3.Text;
-            Properties.Settings.Default.Images = imagesCheckBox.Checked;
 
 
             Properties.Settings.Default.viewer_default_backcolor = color_background_panel.BackColor;
