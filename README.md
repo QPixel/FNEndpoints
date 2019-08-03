@@ -1,4 +1,7 @@
 # FNEndpoints
+
+[![](https://img.shields.io/github/downloads/RythenGlyth/FNEndpoints/total.svg?color=green&label=Total%20Downloads&logo=buzzfeed&logoColor=white)](https://github.com/RythenGlyth/FNEndpoints/releases)
+
 C# based Fortnite Endpoints Viewer
 ## Installation
 1. Download the .exe: [Releases](https://github.com/RythenGlyth/FNEndpoints/releases)
