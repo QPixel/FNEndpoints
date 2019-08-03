@@ -2,6 +2,8 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
@@ -15,6 +17,11 @@ namespace FNEndpoints.Updater
     {
         async public static void checkForUpdate()
         {
+            if(File.Exists(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "ZipExtractor.log")))
+            {
+                File.Delete(Path.Combine(Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName), "ZipExtractor.log"));
+            }
+
             var currentVersion = Assembly.GetEntryAssembly().GetName().Version;
             string jsonReponse = await getNewestUpdateResponse();
             if (jsonReponse != "")
