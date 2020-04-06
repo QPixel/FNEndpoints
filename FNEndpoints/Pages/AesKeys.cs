@@ -35,7 +35,7 @@ namespace FNEndpoints.Pages
 
         private void label1_Click(object sender, EventArgs e)
         {
-            Process.Start("http://benbotfn.tk:8080/api/aes");
+            Process.Start("http://benbotfn.tk/api/v1/aes");
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

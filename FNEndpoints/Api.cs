@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,7 +22,7 @@ namespace FNEndpoints
 
             if (auth)
             {
-                EndpointRequest.AddHeader("Authorization", "bearer " + getExchangeToken(getAccessCode(getAccessToken(Properties.Settings.Default.EpicEmail, Properties.Settings.Default.EpicPassword))));
+                EndpointRequest.AddHeader("Authorization", "bearer " + getExchangeToken(getAccessCode(getAccessToken(getOAuthToken(Properties.Settings.Default.EpicEmail, Properties.Settings.Default.EpicPassword)))));
             }
             EndpointRequest.AddHeader("Accept-Language", Properties.Settings.Default.Language);
             EndpointRequest.AddHeader("X-EpicGames-Language", Properties.Settings.Default.Language);
@@ -31,13 +32,17 @@ namespace FNEndpoints
 
             return content;
         }
+
+       
+
+
         public static string GetAesKeys()
         {
             if (Properties.Settings.Default.pakPath != "" && Directory.Exists(Properties.Settings.Default.pakPath))
             {
                 string mainKey;
                 {
-                    string aesApi = GetEndpoint("http://benbotfn.tk:8080/api/aes", false, Method.GET);
+                    string aesApi = GetEndpoint("https://benbotfn.tk/api/v1/aes", false, Method.GET);
                     dynamic json = JsonConvert.DeserializeObject(aesApi);
                     mainKey = json.mainKey;
                 }
@@ -125,16 +130,77 @@ namespace FNEndpoints
                 return guid;
             }
         }
-        private static string getAccessToken(string email, string password)
+        private static string getOAuthToken(string email, string password, CookieContainer cookieJar = null, string authMethod = null)
+        {
+            if (cookieJar == null)
+                cookieJar = new CookieContainer();
+
+            var client = new RestClient("https://www.epicgames.com/id/api/")
+            {
+                CookieContainer = cookieJar
+            };
+
+            var represponse = client.Execute(new RestRequest("reputation", Method.GET));
+            dynamic rep = JsonConvert.DeserializeObject(represponse.Content);
+
+            var csrfRes = client.Execute(new RestRequest("csrf", Method.GET));
+
+            var token = csrfRes.Cookies.First(x => x.Name == "XSRF-TOKEN").Value;
+            var loginRequest = new RestRequest(!string.IsNullOrEmpty(authMethod) ? "login/mfa" : "login", Method.POST)
+                .AddHeader("Content-Type", "application/x-www-form-urlencoded")
+                .AddHeader("x-xsrf-token", token);
+
+            if (!string.IsNullOrEmpty(authMethod))
+            {
+                try
+                {
+                    Console.Write("Two factor Detected, write the 6 number code from 2FA: ");
+                    var authKey = Int32.Parse(Console.ReadLine());
+
+                    var twoStep = client.Execute(loginRequest
+                        .AddParameter("code", authKey)
+                        .AddParameter("method", authMethod)
+                        .AddParameter("rememberDevice", false));
+                    if (twoStep.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                    {
+                        return "WRONG AUTH 2AUTH KEY";
+                    }
+                }
+                catch (Exception)
+                {
+                    return "WRONG AUTH 2AUTH KEY";
+                }
+            }
+            else
+            {/*
+                IRestResponse loginRes = client.Execute(loginRequest
+                    .AddParameter("email", email)
+                    .AddParameter("password", password)
+                    .AddParameter("rememberMe", true));
+                    */
+                var loginRes = client.Execute(loginRequest.AddParameter("email", email).AddParameter("password", password).AddParameter("rememberMe", true));
+                if (loginRes.StatusCode == HttpStatusCode.Conflict)
+                {
+                    return getOAuthToken(email, password, cookieJar);
+                }
+                Console.Write(loginRes.Content);
+            }
+            var exchangeRes = client.Execute(
+                new RestRequest("exchange", Method.GET)
+                .AddHeader("x-xsrf-token", token));
+
+            var Exchange = JsonConvert.DeserializeObject<dynamic>(exchangeRes.Content)["code"];
+            return Exchange;
+        }
+        private static string getAccessToken(string exchange_code)
         {
             RestClient getAccessTokenClient = new RestClient("https://account-public-service-prod03.ol.epicgames.com/account/api/oauth/token");
             RestRequest getAccessTokenRequest = new RestRequest(Method.POST);
 
-            getAccessTokenRequest.AddParameter("grant_type", "password");
-            getAccessTokenRequest.AddParameter("username", email);
-            getAccessTokenRequest.AddParameter("password", password);
+            getAccessTokenRequest.AddParameter("grant_type", "exchange_code");
+            getAccessTokenRequest.AddParameter("exchange_code", exchange_code);
             getAccessTokenRequest.AddParameter("includePerms", "true");
-
+            getAccessTokenRequest.AddParameter("token_type", "eg1");
             getAccessTokenRequest.AddHeader("Authorization", "basic MzQ0NmNkNzI2OTRjNGE0NDg1ZDgxYjc3YWRiYjIxNDE6OTIwOWQ0YTVlMjVhNDU3ZmI5YjA3NDg5ZDMxM2I0MWE=");
             getAccessTokenRequest.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
