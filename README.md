@@ -1,6 +1,6 @@
 # FNEndpoints
 
-[![](https://img.shields.io/github/downloads/RythenGlyth/FNEndpoints/total.svg?color=green&label=Total%20Downloads&logo=buzzfeed&logoColor=white)](https://github.com/RythenGlyth/FNEndpoints/releases)
+[![](https://img.shields.io/github/downloads/QPixel/FNEndpoints/total.svg?color=green&label=Total%20Downloads&logo=buzzfeed&logoColor=white)](https://github.com/QPixel/FNEndpoints/releases)
 
 C# based Fortnite Endpoints Viewer
 ## Installation
@@ -11,3 +11,4 @@ C# based Fortnite Endpoints Viewer
 5. Add you Fortnite Pak Path (ends with "\FortniteGame\Content\Paks")
 ## Developer
 - [RythenGlyth](https://github.com/RythenGlyth/)
+- [QPixel](https://github.com/qpixel/) - Fixed Auth flow.
